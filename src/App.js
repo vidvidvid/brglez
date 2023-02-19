@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 import { ChakraProvider, useColorMode } from "@chakra-ui/react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Napacni from "./components/Napacni";
+import Vmes from "./components/Vmes";
 import Pravi from "./components/Pravi";
 import Root from "./components/Root";
 
@@ -26,7 +26,7 @@ function App() {
         <ForceDarkMode>
           <Routes>
             <Route path='/' element={<Root />} />
-            <Route path='/napacni' element={<Napacni />} />
+            <Route path='/vmes' element={<Vmes />} />
             <Route path='/pravi' element={<Pravi />} />
           </Routes>
         </ForceDarkMode>
