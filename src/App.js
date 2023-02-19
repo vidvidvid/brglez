@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+
+import { useEffect } from "react";
+
+import { ChakraProvider, useColorMode } from "@chakra-ui/react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Napacni from "./components/Napacni";
+import Pravi from "./components/Pravi";
+import Root from "./components/Root";
+
+const ForceDarkMode = ({ children }) => {
+  const { colorMode, toggleColorMode } = useColorMode();
+
+  useEffect(() => {
+    if (colorMode === "dark") return;
+    toggleColorMode();
+  }, [colorMode, toggleColorMode]);
+
+  return children;
+};
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <ChakraProvider>
+        <ForceDarkMode>
+          <Routes>
+            <Route path='/' element={<Root />} />
+            <Route path='/napacni' element={<Napacni />} />
+            <Route path='/pravi' element={<Pravi />} />
+          </Routes>
+        </ForceDarkMode>
+      </ChakraProvider>
+    </Router>
   );
 }
-
 export default App;
